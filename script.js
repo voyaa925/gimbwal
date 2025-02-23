@@ -1,46 +1,37 @@
 const bgMusic = document.getElementById('bgMusic');
-bgMusic.volume = 0.3;  // Set volume to 30%
 
-// Try to play automatically
+// Auto-play music when page loads with lower volume
 window.addEventListener('load', () => {
-    bgMusic.play().catch(() => {
-        // If autoplay fails, play on first user interaction
-        document.body.addEventListener('click', () => {
-            bgMusic.play();
-        }, { once: true });
-    });
+    bgMusic.volume = 0.3;  // Set volume to 30%
+    bgMusic.play().catch(console.log);
 });
 
 const messages = [
     {
-        text: "asal kamu tau ya",
-        image: "https://i.pinimg.com/736x/ab/b0/58/abb0581f447719a6c871c3bb6ed965d3.jpg"
+        text: "plss mau dong",
+        image: "https://i.pinimg.com/736x/1e/7c/6f/1e7c6ff7a0c26f7eaefbce683656193d.jpg"
     },
     {
-        text: "sebenarnya kamu mau klik kiri kan??",
-        image: "https://i.pinimg.com/736x/e9/10/24/e91024117d5cb85f81e15b498af01de1.jpg"
+        text: "pls klik yg kiri",
+        image: "https://i.pinimg.com/736x/90/73/a9/9073a9359bff531cd830ae7384752934.jpg"
     },
     {
-        text: "terakhir, aku betmut",
-        image: "https://i.pinimg.com/736x/83/7f/06/837f0653024e8593bbfed3cd9bfae861.jpg"
+        text: "terakhir, kalo \"no\" yauda deh",
+        image: "https://i.pinimg.com/736x/a6/43/f5/a643f5a40db387585b56bc767b66fddb.jpg"
     }
 ];
 
 function createHeart() {
-    const hearts = ['❤', '🌸', '💗', '💝', '💖'];
     const heart = document.createElement('div');
     heart.className = 'heart';
-    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.innerHTML = '❤';
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-    heart.style.fontSize = Math.random() * 10 + 15 + 'px';
-    heart.style.opacity = Math.random() * 0.4 + 0.6;
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 5000);
 }
 
-// Update interval for smoother animation
-setInterval(() => createHeart(), 400);
+setInterval(() => createHeart(), 300);
 
 const title = document.querySelector('.title');
 const noBtn = document.querySelector('.no-btn');
@@ -130,27 +121,11 @@ function getFarPosition(containerRect, windowWidth, windowHeight, buttonWidth, b
 }
 
 yesBtn.addEventListener('click', () => {
-    if (noCount === 0) {
-        // First click - start confession
-        noCount++;
-        title.innerHTML = messages[0].text;
-        document.querySelector('img').src = messages[0].image;
-        yesBtn.innerHTML = "IYAAAA";
-        noBtn.style.display = 'none'; // Hide no button after first yes
-    } else {
-        // Final acceptance
-        title.innerHTML = "YEAAYY! aku tau kamu bakal nerima HEHEHE";
-        document.querySelector('img').remove();
-        
-        // Remove both buttons from the DOM completely
-        noBtn.remove();
-        yesBtn.remove();
-        
-        // Create more hearts for celebration
-        for(let i = 0; i < 50; i++) {
-            setTimeout(() => createHeart(), Math.random() * 1000);
-        }
-    }
+    title.innerHTML = "HORE!!, yaudaa mau eskrimm apaaa";
+    document.querySelector('img').remove(); 
+    noBtn.style.display = 'none';
+    yesBtn.style.display = 'none';
+    bgMusic.play();
 });
 
 noBtn.addEventListener('click', () => {
@@ -159,7 +134,7 @@ noBtn.addEventListener('click', () => {
         title.innerHTML = messages[noCount - 1].text;
         document.querySelector('img').src = messages[noCount - 1].image;
     } else {
-        title.innerHTML = "WLEE GABISA SEGAMPANG ITU";
+        title.innerHTML = "TAPI BOONG HEHEHE";
         if (!noBtn.classList.contains('running')) {
             noBtn.classList.add('running');
         }

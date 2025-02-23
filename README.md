@@ -87,5 +87,3 @@ All rights reserved.
 - Pastikan URL gambar dan musik valid
 - Test dulu di HP sebelum dikirim ke doi
 - Musik yang direkomendasikan: lagu romantis yang viral di TikTok
-"# boyversion" 
-"# boyversion" 
